@@ -99,9 +99,10 @@ def curl(url, data=None):
         
     ssl_client_cert = pref('SSLClientCertificate')
     ssl_client_key = pref('SSLClientKey')
-    if ssl_client_cert and ssl_client_key:
+    if ssl_client_cert:
         cmd += ['--cert', ssl_client_cert]
-        cmd += ['--key', ssl_client_key]
+        if ssl_client_key:
+            cmd += ['--key', ssl_client_key]
 
     max_time = '8' if data else '4'
     cmd += ['--max-time', max_time]
